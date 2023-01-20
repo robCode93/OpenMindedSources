@@ -18,6 +18,38 @@ namespace backend.Controllers
         }
 
         // ########## GET-Methoden ##########
+        [HttpGet]
+        [Route("[action]")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileReferenceDetails[]))]
+        public IActionResult GetAllFileReferences()
+        {
+            try
+            {
+                var model = _fileReferenceService.GetAllFileReferences();
+                return Ok(model);   
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("{id}/[action]")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileReferenceDetails))]
+        public IActionResult GetFileReferenceById([FromRoute] Guid id)
+        {
+            try
+            {
+                var model = _fileReferenceService.GetFileReferenceById(id);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+                
         // ########## CREATE-Methoden ##########
         [HttpPost]
         [Route("[action]")]
