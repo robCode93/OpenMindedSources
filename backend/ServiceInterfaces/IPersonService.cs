@@ -9,7 +9,6 @@ namespace backend.ServiceInterfaces
         // ########## GET-Methoden ##########
         public List<PersonDetails> GetAllPersons();
         public PersonDetails GetPersonById(Guid Id);
-        public List<PersonDetails> GetPersonsByName(string searchText);
         public List<PersonDetails> GetPersonsByTimeSpan(DateTime startDate, DateTime endDate);
 
         // ########## CREATE-Methoden ##########

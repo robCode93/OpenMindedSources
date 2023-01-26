@@ -14,5 +14,6 @@ namespace backend.Models
         public DateTime DateOfDatabaseEntry { get; set; }
         public FileReference? FileReference { get; set; }
         public FileReference? Thumbnail { get; set; }
+        public SourceCategory? SourceCategory { get; set; }
     }
 }

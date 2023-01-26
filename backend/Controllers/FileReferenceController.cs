@@ -3,6 +3,7 @@ using backend.DetailsModels;
 using backend.ServiceInterfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace backend.Controllers
 {
@@ -49,7 +50,31 @@ namespace backend.Controllers
                 return BadRequest(ex.Message);
             }
         }
-                
+
+        [HttpGet]
+        [Route("{id}/[action]")]
+        public async Task<IActionResult> DownloadFileFromDatabase([FromRoute] Guid id)
+        {
+            try
+            {
+                var model = _fileReferenceService.GetFileReferenceById(id);
+                var provider = new FileExtensionContentTypeProvider();
+
+                if (!provider.TryGetContentType(model.FileName, out var contentType))
+                {
+                    contentType = "application/octet-stream";
+                }
+
+                var bytes = await System.IO.File.ReadAllBytesAsync(model.FileName);
+                return File(bytes, contentType, Path.GetFileName(model.FileName));
+
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         // ########## CREATE-Methoden ##########
         [HttpPost]
         [Route("[action]")]

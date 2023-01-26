@@ -9,7 +9,6 @@ namespace backend.ServiceInterfaces
         // ########## GET-Methoden ##########
         public List<SourceCategoryDetails> GetAllSourceCategories();
         public SourceCategoryDetails GetSourceCategoryById(Guid Id);
-        public List<SourceCategoryDetails> GetSourceCategoriesByName(string searchText);
 
         // ########## CREATE-Methoden ##########
         public ResponseModel CreateSourceCategory(CreateSourceCategoryModel createModel);
