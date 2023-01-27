@@ -7,7 +7,7 @@ namespace backend.ServiceInterfaces
     public interface ISubCategoryService
     {
         // ########## GET-Methoden ##########
-        public List<SubCategoryDetails> GetSubCategories();
+        public List<SubCategoryDetails> GetAllSubCategories();
         public List<SubCategoryDetails> GetSubCategoriesBySourceCategory(Guid id);
         public SubCategoryDetails GetSubCategoryById(Guid id);
 
@@ -15,7 +15,7 @@ namespace backend.ServiceInterfaces
         public ResponseModel CreateSubCategoryModel(Guid sourceCategoryId, CreateSubCategoryModel createModel);
 
         // ########## UPDATE-Methoden ##########
-        public ResponseModel UpdateSubCategory(Guid id);
+        public ResponseModel UpdateSubCategory(Guid id, UpdateSubCategoryModel updateModel);
 
         // ########## DELETE-Methoden ##########
         public ResponseModel DeleteSubCategory(Guid id);
