@@ -100,7 +100,7 @@ namespace backend.Controllers
 
         // ########## DELETE-Methoden ##########
         [HttpDelete]
-        [Route("{id}/action]")]
+        [Route("{id}/[action]")]
         public IActionResult DeleteSubCategory([FromRoute] Guid id)
         {
             try

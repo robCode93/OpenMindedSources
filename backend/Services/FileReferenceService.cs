@@ -2,7 +2,6 @@
 using backend.DetailsModels;
 using backend.Models;
 using backend.ServiceInterfaces;
-using Humanizer.Localisation;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 
