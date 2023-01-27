@@ -8,15 +8,15 @@ namespace backend.ServiceInterfaces
     {
         // ########## GET-Methoden ##########
         public List<SourceCategoryDetails> GetAllSourceCategories();
-        public SourceCategoryDetails GetSourceCategoryById(Guid Id);
+        public SourceCategoryDetails GetSourceCategoryById(Guid id);
 
         // ########## CREATE-Methoden ##########
         public ResponseModel CreateSourceCategory(CreateSourceCategoryModel createModel);
 
         // ########## UPDATE-Methoden ##########
-        public ResponseModel UpdateSourceCategory(Guid Id, UpdateSourceCategoryModel updateModel);
+        public ResponseModel UpdateSourceCategory(Guid id, UpdateSourceCategoryModel updateModel);
 
         // ########## DELETE-Methoden ##########
-        public ResponseModel DeleteSourceCategory(Guid Id);
+        public ResponseModel DeleteSourceCategory(Guid id);
     }
 }

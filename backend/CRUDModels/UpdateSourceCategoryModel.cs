@@ -8,6 +8,5 @@ namespace backend.CRUDModels
         public string? Description { get; set; }
         public string? IconName { get; set; }
         public string? HexColor { get; set; }
-        public IList<Guid> SourcIds { get; set; }
     }
 }
