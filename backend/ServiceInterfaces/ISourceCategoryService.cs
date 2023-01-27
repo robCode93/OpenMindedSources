@@ -15,7 +15,6 @@ namespace backend.ServiceInterfaces
 
         // ########## UPDATE-Methoden ##########
         public ResponseModel UpdateSourceCategory(Guid Id, UpdateSourceCategoryModel updateModel);
-        public ResponseModel AddSourceToCategory(Guid sourceId, Guid categoryId);
 
         // ########## DELETE-Methoden ##########
         public ResponseModel DeleteSourceCategory(Guid Id);

@@ -164,6 +164,7 @@ namespace backend.Services
                 foreach(var source in person.Sources)
                 {
                     source.PersonId = null;
+                    source.Person = null;
                     _context.Sources.Update(source);
                 }
             }
@@ -181,25 +182,77 @@ namespace backend.Services
             details.Id = person.Id;
             details.FirstName = person.FirstName;
             details.LastName = person.LastName;
-            details.Description = person.Description;   
+            details.Description = person.Description;
             details.Nationality = person.Nationality;
             details.Title = person.Title;
             details.BirthDate = person.BirthDate;
             details.DeathDate = person.DeathDate;
-            
+
+            details.Sources = new List<SourceDetails>();
             foreach( var source in person.Sources)
             {
                 SourceDetails sourceDetails = new SourceDetails();
                 sourceDetails.Id = source.Id;
                 sourceDetails.DateOfCreation = source.DateOfCreation;
                 sourceDetails.DateOfDatabaseEntry = source.DateOfDatabaseEntry;
-                sourceDetails.SourceCategoryId = source.SourceCategoryId;
                 sourceDetails.PersonId = source.PersonId;
                 sourceDetails.Description = source.Description;
                 sourceDetails.Name = source.Name;
-            }
 
-            return details;
+                if (source.FileReference is not null)
+                {
+                    sourceDetails.FileReferenceId = source.FileReference.Id;
+
+                    sourceDetails.FileReference = new FileReferenceDetails();
+                    sourceDetails.FileReference.FileName = source.FileReference.FileName;
+                    sourceDetails.FileReference.OnPerson = source.FileReference.OnPerson;
+                    sourceDetails.FileReference.CreationDate = source.FileReference.CreationDate;
+                    sourceDetails.FileReference.Description = source.FileReference.Description;
+                    sourceDetails.FileReference.FileSizeInBytes = source.FileReference.FileSizeInBytes;
+                    sourceDetails.FileReference.OnSource = source.FileReference.OnSource;
+                    sourceDetails.FileReference.MimeType = source.FileReference.MimeType;
+
+                }
+
+                if (source.Thumbnail is not null)
+                {
+                    sourceDetails.ThumbnailId = source.Thumbnail.Id;
+
+                    sourceDetails.Thumbnail = new FileReferenceDetails();
+                    sourceDetails.Thumbnail.FileName = source.Thumbnail.FileName;
+                    sourceDetails.Thumbnail.OnPerson = source.Thumbnail.OnPerson;
+                    sourceDetails.Thumbnail.CreationDate = source.Thumbnail.CreationDate;
+                    sourceDetails.Thumbnail.Description = source.Thumbnail.Description;
+                    sourceDetails.Thumbnail.FileSizeInBytes = source.Thumbnail.FileSizeInBytes;
+                    sourceDetails.Thumbnail.OnSource = source.Thumbnail.OnSource;
+                    sourceDetails.Thumbnail.MimeType = source.Thumbnail.MimeType;
+                }
+
+                if (source.SourceCategory is not null)
+                {
+                    sourceDetails.SourceCategoryId = source.SourceCategory.Id;
+
+                    sourceDetails.SourceCategory = new SourceCategoryDetails();
+                    sourceDetails.SourceCategory.Id = source.SourceCategory.Id;
+                    sourceDetails.SourceCategory.IconName = source.SourceCategory.IconName;
+                    sourceDetails.SourceCategory.Name = source.SourceCategory.Name;
+                    sourceDetails.SourceCategory.Description = source.SourceCategory.Description;
+                    sourceDetails.SourceCategory.HexColor = source.SourceCategory.HexColor;
+                }
+
+                if (source.SubCategory is not null)
+                {
+                    sourceDetails.SubCategoryId = source.SubCategory.Id;
+
+                    sourceDetails.SubCategory = new SubCategoryDetails();
+                    sourceDetails.SubCategory.Id = source.SubCategory.Id;
+                    sourceDetails.SubCategory.SourceCategoryId = source.SubCategory.SourceCategoryId;
+                    sourceDetails.SubCategory.Description = source.SubCategory.Description;
+                    sourceDetails.SubCategory.Name = source.SubCategory.Name;
+                }
+
+                details.Sources.Add(sourceDetails);
+            }
         }
     }
 }
