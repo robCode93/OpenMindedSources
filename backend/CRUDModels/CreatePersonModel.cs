@@ -13,7 +13,6 @@ namespace backend.CRUDModels
         public string? Title { get; set; }
         public string? Description { get; set; }
         public List<Guid>? SourceIds { get; set; }
-
         public Guid? ThumbnailId { get; set; }
     }
 }

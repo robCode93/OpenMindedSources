@@ -1,5 +1,6 @@
 ﻿using backend.CRUDModels;
 using backend.DetailsModels;
+using backend.Models;
 using backend.ServiceInterfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,18 @@ namespace backend.Controllers
             try
             {
                 var model = _fileReferenceService.GetAllFileReferences();
+
+                foreach(var fileReference in model)
+                {
+                    if (fileReference.FileName is not null)
+                    {
+                        fileReference.DownloadUrl = Url.Action("DownloadFileFromDatabase", "FileReference", new
+                        {
+                            id = fileReference.FileName,
+                        });
+                    }
+                }
+
                 return Ok(model);   
             }
             catch (Exception ex)
@@ -43,6 +56,15 @@ namespace backend.Controllers
             try
             {
                 var model = _fileReferenceService.GetFileReferenceById(id);
+
+                if (model.FileName is not null)
+                {
+                    model.DownloadUrl = Url.Action("DownloadFileFromDatabase", "FileReference", new
+                    {
+                        id = model.FileName,
+                    });
+                }
+
                 return Ok(model);
             }
             catch (Exception ex)
@@ -78,6 +100,21 @@ namespace backend.Controllers
         // ########## CREATE-Methoden ##########
         [HttpPost]
         [Route("[action]")]
+        public IActionResult CreateFileReference(CreateFileReferenceModel createModel)
+        {
+            try
+            {
+                var model = _fileReferenceService.CreateFileReference(createModel);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileReferenceDetails))]
         public IActionResult UploadFileToDatabase(IFormFile file, CreateFileReferenceModel createModel)
         {
@@ -99,6 +136,21 @@ namespace backend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         // ########## DELETE-Methoden ##########
+        [HttpDelete]
+        [Route("{id}/[action]")]
+        public IActionResult DeleteFileReference([FromRoute] Guid id)
+        {
+            try
+            {
+                var model = _fileReferenceService.DeleteFileReference(id);
+                return Ok(model);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

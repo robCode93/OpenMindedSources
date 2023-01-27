@@ -2,6 +2,7 @@
 using backend.DetailsModels;
 using backend.Models;
 using backend.ServiceInterfaces;
+using System;
 
 namespace backend.Services
 {
@@ -127,6 +128,21 @@ namespace backend.Services
                 details.Person.Description = source.Person.Description;
                 details.Person.Nationality = source.Person.Nationality;
                 details.Person.Title = source.Person.Title;
+
+                if (source.Person.Thumbnail is not null)
+                {
+                    details.Person.ThumbnailId = source.Person.ThumbnailId;
+
+                    details.Person.Thumbnail = new FileReferenceDetails();
+                    details.Person.Thumbnail.Id = source.Person.Thumbnail.Id;
+                    details.Person.Thumbnail.OnPerson = source.Person.Thumbnail.OnPerson;
+                    details.Person.Thumbnail.Description = source.Person.Thumbnail.Description;
+                    details.Person.Thumbnail.CreationDate = source.Person.Thumbnail.CreationDate;
+                    details.Person.Thumbnail.OnSource = source.Person.Thumbnail.OnSource;
+                    details.Person.Thumbnail.FileName = source.Person.Thumbnail.FileName;
+                    details.Person.Thumbnail.FileSizeInBytes = source.Person.Thumbnail.FileSizeInBytes;
+                    details.Person.Thumbnail.MimeType = source.Person.Thumbnail.MimeType;
+                }
             }
 
             return details;

@@ -15,7 +15,7 @@ namespace backend.ServiceInterfaces
         public ResponseModel CreatePerson(CreatePersonModel createModel);
 
         // ########## UPDATE-Methoden ##########
-        public ResponseModel UpdatePerson(UpdatePersonModel updateModel);
+        public ResponseModel UpdatePerson(Guid id, UpdatePersonModel updateModel);
         public ResponseModel AddSourceToPerson(Guid sourceId, Guid personId);
 
         // ########## DELETE-Methoden ##########

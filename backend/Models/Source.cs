@@ -6,7 +6,7 @@ namespace backend.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid PersonId { get; set; }
+        public Guid? PersonId { get; set; }
         public Guid? SourceCategoryId { get; set; }
         public Guid? SubCategoryId { get; set; }
         public string Name { get; set; } = string.Empty;

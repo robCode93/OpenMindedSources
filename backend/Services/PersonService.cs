@@ -141,9 +141,73 @@ namespace backend.Services
             return model;
         }
 
-        public ResponseModel UpdatePerson(UpdatePersonModel updateModel)
+        public ResponseModel UpdatePerson(Guid id, UpdatePersonModel updateModel)
         {
-            throw new NotImplementedException();
+            ResponseModel model = new ResponseModel();
+            var person = _context.Persons.Include(p => p.Sources).Include(p => p.Thumbnail).FirstOrDefault(p => p.Id == id);
+
+            if(person is null)
+            {
+                model.IsSuccess = false;
+                model.Message = "Person not found in database";
+                return model;
+            }
+
+            if(updateModel.FirstName is not null)
+            {
+                person.FirstName = updateModel.FirstName;
+            }
+
+            if (updateModel.LastName is not null)
+            {
+                person.LastName = updateModel.LastName;
+            }
+
+            if(updateModel.DeathDate is not null && updateModel.BirthDate is not null && updateModel.DeathDate >= updateModel.BirthDate)
+            {
+                person.DeathDate = updateModel.DeathDate;
+                person.BirthDate = updateModel.BirthDate;
+            }else if (updateModel.DeathDate is not null && updateModel.BirthDate is null && updateModel.DeathDate >= person.BirthDate)
+            {
+                person.DeathDate = updateModel.DeathDate;
+            }else if (updateModel.DeathDate is null && updateModel.BirthDate is not null && person.DeathDate >= updateModel.BirthDate)
+            {
+                person.BirthDate = updateModel.BirthDate;
+            }else if(updateModel.BirthDate is null && updateModel.DeathDate is null)
+            {
+                person.DeathDate = updateModel.DeathDate;
+                person.BirthDate = updateModel.BirthDate;
+            }
+
+            person.Nationality = updateModel.Nationality;
+            person.Title = updateModel.Title;
+            person.Description = updateModel.Description;
+            person.Thumbnail = _context.FileReferences.FirstOrDefault(f => f.Id == updateModel.ThumbnailId);
+            person.ThumbnailId = updateModel.ThumbnailId;
+
+            if(updateModel.SourceIds is not null)
+            {
+                foreach(var sourceId in updateModel.SourceIds)
+                {
+                    var source = _context.Sources.Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.SubCategory).Include(s => s.Person).Include(s => s.Thumbnail).FirstOrDefault(s => s.Id == sourceId);
+
+                    if(source != null && person.Sources.Any(s => s.Id == sourceId) == false)
+                    {
+                        person.Sources.Add(source);
+                        source.PersonId = person.Id;
+                        source.Person = person;
+
+                        _context.Sources.Update(source);
+                    }
+                }
+            }
+
+            _context.Persons.Update(person);
+            _context.SaveChanges();
+
+            model.IsSuccess = true;
+            model.Message = "Person successfully updated";
+            return model;
         }
 
         // ########## DELETE-Methoden ##########
@@ -168,6 +232,13 @@ namespace backend.Services
                     _context.Sources.Update(source);
                 }
             }
+
+            _context.Persons.Remove(person);
+            _context.SaveChanges();
+
+            model.IsSuccess = true;
+            model.Message = "Person successfully deleted";
+            return model;
         }
 
         // ########## HELPERS ##########
@@ -187,6 +258,21 @@ namespace backend.Services
             details.Title = person.Title;
             details.BirthDate = person.BirthDate;
             details.DeathDate = person.DeathDate;
+
+            if(person.Thumbnail is not null)
+            {
+                details.ThumbnailId = person.ThumbnailId;
+
+                details.Thumbnail = new FileReferenceDetails();
+                details.Thumbnail.Id = person.Thumbnail.Id;
+                details.Thumbnail.OnPerson = person.Thumbnail.OnPerson;
+                details.Thumbnail.Description = person.Thumbnail.Description;
+                details.Thumbnail.CreationDate = person.Thumbnail.CreationDate;
+                details.Thumbnail.OnSource = person.Thumbnail.OnSource;
+                details.Thumbnail.FileName = person.Thumbnail.FileName;
+                details.Thumbnail.FileSizeInBytes = person.Thumbnail.FileSizeInBytes;
+                details.Thumbnail.MimeType = person.Thumbnail.MimeType;
+            }
 
             details.Sources = new List<SourceDetails>();
             foreach( var source in person.Sources)
@@ -253,6 +339,8 @@ namespace backend.Services
 
                 details.Sources.Add(sourceDetails);
             }
+
+            return details;
         }
     }
 }
