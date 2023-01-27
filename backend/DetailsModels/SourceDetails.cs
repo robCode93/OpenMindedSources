@@ -10,7 +10,8 @@ namespace backend.DetailsModels
         public Guid? FileReferenceId { get; set; }
         public Guid? SubCategoryId { get; set; }
         public Guid? ThumbnailId { get; set; }
-        public string? DownloadUrl { get; set; }
+        public string? FileDownloadUrl { get; set; }
+        public string? ThumbnailDownloadUrl { get; set; }
         public string? Name { get; set; } = string.Empty;
         public string? Description { get; set; } = string.Empty;
         public DateTime? DateOfCreation { get; set; }

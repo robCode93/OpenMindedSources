@@ -2,6 +2,7 @@
 using backend.DetailsModels;
 using backend.Models;
 using backend.ServiceInterfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace backend.Services
@@ -18,35 +19,253 @@ namespace backend.Services
         // ########## GET-Methoden ##########
         public List<SourceDetails> GetAllSources()
         {
-            throw new NotImplementedException();
+            List<SourceDetails> detailsList = new List<SourceDetails>();
+            var sources = _context.Sources.Include(s => s.Thumbnail).Include(s => s.SubCategory).Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Person).ToList();
+
+            foreach(var source in sources)
+            {
+                detailsList.Add(ConvertModelToDetailsModel(source));
+            }
+
+            detailsList.RemoveAll(s => s == null);
+            return detailsList;
         }
 
-        public SourceDetails GetSourceById(Guid id)
+        public SourceDetails? GetSourceById(Guid id)
         {
-            throw new NotImplementedException();
+            return ConvertModelToDetailsModel(_context.Sources.Include(s => s.Thumbnail).Include(s => s.SubCategory).Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Person).FirstOrDefault(s => s.Id == id));
         }
 
         public List<SourceDetails> GetSourcesByTimeSpan(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            List<SourceDetails> detailsList = new List<SourceDetails>();
+            var sources = _context.Sources.Include(s => s.Thumbnail).Include(s => s.SubCategory).Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Person).Where(s => s.DateOfCreation >= startDate && s.DateOfCreation <= endDate).ToList();
+
+            foreach (var source in sources)
+            {
+                detailsList.Add(ConvertModelToDetailsModel(source));
+            }
+
+            detailsList.RemoveAll(s => s == null);
+            return detailsList;
         }
 
         // ########## create-Methoden ##########
         public ResponseModel CreateSource(CreateSourceModel createModel)
         {
-            throw new NotImplementedException();
+            ResponseModel model = new ResponseModel();
+            var person = _context.Persons.Include(p => p.Sources).Include(p => p.Thumbnail).FirstOrDefault(p => p.Id == createModel.PersonId);
+            var sourceCategory = _context.SourceCategories.Include(c => c.SubCategories).FirstOrDefault(c => c.Id == createModel.SourceCategoryId);
+            var subCategory = _context.SubCategories.FirstOrDefault(c => c.Id == createModel.SubCategoryId);
+            var fileReference = _context.FileReferences.FirstOrDefault(f => f.Id == createModel.FileReferenceId);
+            var thumbnail = _context.FileReferences.FirstOrDefault(f => f.Id == createModel.ThumbnailId);
+
+            if (_context.Sources.Any(s => s.Name == createModel.Name))
+            {
+                model.IsSuccess = false;
+                model.Message = "Sourcename is already taken";
+                return model;
+            }
+
+            Source source = new Source();
+            source.Id = Guid.NewGuid();
+            source.Name = createModel.Name;
+            source.Description = createModel.Description;
+            source.DateOfCreation = createModel.DateOfCreation;
+            source.DateOfDatabaseEntry = DateTime.Now;
+
+            if (person is not null)
+            {
+                source.PersonId = createModel.PersonId;
+                source.Person = person;
+            }
+
+            if(sourceCategory is not null)
+            {
+                source.SourceCategoryId = createModel.SourceCategoryId;
+                source.SourceCategory = sourceCategory; 
+            }
+            
+            if(subCategory is not null)
+            {
+                source.SubCategoryId = createModel.SubCategoryId; 
+                source.SubCategory = subCategory;
+            }
+            
+            if(thumbnail is not null)
+            {
+                source.ThumbnailId = createModel.ThumbnailId;
+                source.Thumbnail = thumbnail;
+                thumbnail.OnSource = source.Id;
+            }
+
+            if(fileReference is not null)
+            {
+                source.FileReferenceId = createModel.ThumbnailId;
+                source.FileReference = fileReference;
+                fileReference.OnSource = source.Id;
+            }
+
+            if(person is not null)
+            {
+                person.Sources.Add(source);
+            }
+            else
+            {
+                _context.Sources.Add(source);
+            }
+
+            _context.SaveChanges();
+
+            model.IsSuccess = true;
+            model.Message = "Source successfully created";
+            return model;
         }
 
         // ########## UPDATE-Methoden ##########
-        public ResponseModel UpdateSource(Guid Id, UpdateSourceModel updateModel)
+        public ResponseModel UpdateSource(Guid id, UpdateSourceModel updateModel)
         {
-            throw new NotImplementedException();
+            ResponseModel model = new ResponseModel();
+            var source = _context.Sources.Include(s => s.Thumbnail).Include(s => s.SubCategory).Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Person).FirstOrDefault(s => s.Id == id);
+            var person = _context.Persons.Include(p => p.Sources).Include(p => p.Thumbnail).FirstOrDefault(p => p.Id == updateModel.PersonId);
+            var sourceCategory = _context.SourceCategories.Include(c => c.SubCategories).FirstOrDefault(c => c.Id == updateModel.SourceCategoryId);
+            var subCategory = _context.SubCategories.FirstOrDefault(c => c.Id == updateModel.SubCategoryId);
+            var fileReference = _context.FileReferences.FirstOrDefault(f => f.Id == updateModel.FileReferenceId);
+            var thumbnail = _context.FileReferences.FirstOrDefault(f => f.Id == updateModel.ThumbnailId);
+
+            if (source is null)
+            {
+                model.IsSuccess = false;
+                model.Message = "Source not found";
+                return model;
+            }
+
+            if(updateModel.Name is not null && _context.Sources.Any(s => s.Name == updateModel.Name))
+            {
+                var sourceWithName = _context.Sources.Include(s => s.Thumbnail).Include(s => s.SubCategory).Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Person).FirstOrDefault(s => s.Name == updateModel.Name);
+
+                if(sourceWithName is not null && sourceWithName.Id != source.Id)
+                {
+                    model.IsSuccess = false;
+                    model.Message = "New Name for Source is already taken";
+                    return model;
+                }
+            }
+
+            if(updateModel.Name is not null && _context.Sources.Any(s => s.Name == updateModel.Name) == false)
+            {
+                source.Name = updateModel.Name;
+            }
+
+            source.Description = updateModel.Description;
+
+            if(updateModel.DateOfCreation is not null)
+            {
+                source.DateOfCreation = Convert.ToDateTime(updateModel.DateOfCreation);
+            }
+
+            if(person is not null)
+            {
+                source.PersonId = updateModel.PersonId;
+                source.Person = person;
+
+                if(person.Sources is not null && person.Sources.Any(s => s.Id == source.Id) == false)
+                {
+                    person.Sources.Add(source);
+                    _context.Persons.Update(person);
+                }
+            }
+
+            if(sourceCategory is not null)
+            {
+                source.SourceCategoryId = updateModel.SourceCategoryId;
+                source.SourceCategory = sourceCategory;
+            }
+
+            if(subCategory is not null)
+            {
+                source.SubCategoryId = updateModel.SubCategoryId;
+                source.SubCategory = subCategory;
+            }
+
+            if(thumbnail is not null)
+            {
+                source.ThumbnailId = updateModel.ThumbnailId;
+                source.Thumbnail = thumbnail;
+
+                thumbnail.OnSource = source.Id;
+                _context.FileReferences.Update(thumbnail);
+            }
+
+            if(fileReference is not null)
+            {
+                source.FileReferenceId = updateModel.FileReferenceId;
+                source.FileReference = fileReference;
+
+                fileReference.OnSource = source.Id;
+                _context.FileReferences.Update(fileReference);
+            }
+
+            _context.Sources.Update(source);
+            _context.SaveChanges();
+
+            model.IsSuccess = true;
+            model.Message = "Source successfully updated";
+            return model;
         }
 
         // ########## DELETE-Methoden ##########
-        public ResponseModel DeleteSource(Guid Id)
+        public ResponseModel DeleteSource(Guid id)
         {
-            throw new NotImplementedException();
+            ResponseModel model = new ResponseModel();
+            var source = _context.Sources.Include(s => s.Thumbnail).Include(s => s.SubCategory).Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Person).FirstOrDefault(s => s.Id == id);
+
+            if(source is null)
+            {
+                model.IsSuccess = false;
+                model.Message = "Source not found";
+                return model;
+            }
+
+            if(source.ThumbnailId is not null)
+            {
+                var thumbnail = _context.FileReferences.FirstOrDefault(f => f.Id == source.ThumbnailId);
+                
+                if(thumbnail is not null)
+                {
+                    thumbnail.OnSource = null;
+                    _context.FileReferences.Update(thumbnail);
+                }
+            }
+
+            if(source.PersonId is not null)
+            {
+                var person = _context.Persons.Include(p => p.Sources).Include(p => p.Thumbnail).FirstOrDefault(p => p.Id == source.PersonId);
+
+                if(person is not null && person.Sources is not null && person.Sources.Contains(source))
+                {
+                    person.Sources.Remove(source);
+                    _context.Persons.Update(person);
+                }
+            }
+
+            if(source.FileReferenceId is not null)
+            {
+                var fileReference = _context.FileReferences.FirstOrDefault(f => f.Id == source.FileReferenceId);
+
+                if (fileReference is not null)
+                {
+                    fileReference.OnSource = null;
+                    _context.FileReferences.Update(fileReference);
+                }
+            }
+
+            _context.Sources.Remove(source);
+            _context.SaveChanges();
+
+            model.IsSuccess = true;
+            model.Message = "Source successfully deleted";
+            return model;
         }
 
         // ########## HELPERS ##########
@@ -65,7 +284,7 @@ namespace backend.Services
 
             if(source.FileReference is not null)
             {
-                details.FileReferenceId = source.FileReference.Id;
+                details.FileReferenceId = source.FileReferenceId;
 
                 details.FileReference = new FileReferenceDetails();
                 details.FileReference.FileName = source.FileReference.FileName;
@@ -80,7 +299,7 @@ namespace backend.Services
 
             if(source.Thumbnail is not null)
             {
-                details.ThumbnailId = source.Thumbnail.Id;
+                details.ThumbnailId = source.ThumbnailId;
 
                 details.Thumbnail = new FileReferenceDetails();
                 details.Thumbnail.FileName = source.Thumbnail.FileName;
