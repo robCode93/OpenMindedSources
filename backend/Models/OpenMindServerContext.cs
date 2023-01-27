@@ -9,6 +9,7 @@ namespace backend.Models
         public DbSet<Person> Persons { get; set; }
         public DbSet<Source> Sources { get; set; }  
         public DbSet<SourceCategory> SourceCategories { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<FileReference> FileReferences { get; set; }    
     }
 }

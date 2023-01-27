@@ -10,6 +10,6 @@ namespace backend.Models
         public string? Description { get; set; }
         public string? IconName { get; set; }
         public string? HexColor { get; set; }
-        public IList<Source> Sources { get; set; } = new List<Source>();    
+        public IList<SubCategory> SubCategories { get; set; } = new List<SubCategory>();    
     }
 }

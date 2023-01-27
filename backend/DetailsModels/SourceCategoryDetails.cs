@@ -9,6 +9,6 @@ namespace backend.DetailsModels
         public string? Description { get; set; }
         public string? IconName { get; set; }
         public string? HexColor { get; set; }
-        public IList<SourceDetails> Sources { get; set; } = new List<SourceDetails>();
+        public IList<SubCategoryDetails>? SubCategories { get; set; }
     }
 }

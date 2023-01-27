@@ -7,7 +7,8 @@ namespace backend.Models
         [Key]
         public Guid Id { get; set; }
         public Guid PersonId { get; set; }
-        public Guid SourceCategoryId { get; set; }
+        public Guid? SourceCategoryId { get; set; }
+        public Guid? SubCategoryId { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public DateTime DateOfCreation { get; set; }
@@ -15,5 +16,7 @@ namespace backend.Models
         public FileReference? FileReference { get; set; }
         public FileReference? Thumbnail { get; set; }
         public SourceCategory? SourceCategory { get; set; }
+        public SubCategory? SubCategory { get; set; }
+        public Person? Person { get; set; }
     }
 }
