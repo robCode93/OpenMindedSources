@@ -15,6 +15,7 @@ import { ApiModule } from './api/api.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
     ]),
     ApiModule.forRoot({
