@@ -36,8 +36,9 @@ export class SubCategoryService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiSubCategoryGetAllSubCategoriesGet$Plain$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<SubCategoryDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryGetAllSubCategoriesGetPath, 'get');
@@ -47,7 +48,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -57,17 +58,18 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryGetAllSubCategoriesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryGetAllSubCategoriesGet$Plain(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<SubCategoryDetails>> {
 
-    return this.apiSubCategoryGetAllSubCategoriesGet$Plain$Response(params).pipe(
+    return this.apiSubCategoryGetAllSubCategoriesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<SubCategoryDetails>>) => r.body as Array<SubCategoryDetails>)
     );
   }
@@ -79,8 +81,9 @@ export class SubCategoryService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiSubCategoryGetAllSubCategoriesGet$Json$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<SubCategoryDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryGetAllSubCategoriesGetPath, 'get');
@@ -90,7 +93,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -100,17 +103,18 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryGetAllSubCategoriesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryGetAllSubCategoriesGet$Json(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<SubCategoryDetails>> {
 
-    return this.apiSubCategoryGetAllSubCategoriesGet$Json$Response(params).pipe(
+    return this.apiSubCategoryGetAllSubCategoriesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<SubCategoryDetails>>) => r.body as Array<SubCategoryDetails>)
     );
   }
@@ -128,8 +132,9 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Plain$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<SubCategoryDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdGetSubCategoriesBySourcecategoryGetPath, 'get');
@@ -140,7 +145,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -150,18 +155,19 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Plain(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<SubCategoryDetails>> {
 
-    return this.apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Plain$Response(params).pipe(
+    return this.apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<SubCategoryDetails>>) => r.body as Array<SubCategoryDetails>)
     );
   }
@@ -174,8 +180,9 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Json$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<SubCategoryDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdGetSubCategoriesBySourcecategoryGetPath, 'get');
@@ -186,7 +193,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -196,18 +203,19 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Json(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<SubCategoryDetails>> {
 
-    return this.apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Json$Response(params).pipe(
+    return this.apiSubCategoryIdGetSubCategoriesBySourcecategoryGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<SubCategoryDetails>>) => r.body as Array<SubCategoryDetails>)
     );
   }
@@ -225,8 +233,9 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdGetSubCategoryByIdGet$Plain$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<SubCategoryDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdGetSubCategoryByIdGetPath, 'get');
@@ -237,7 +246,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -247,18 +256,19 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdGetSubCategoryByIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryIdGetSubCategoryByIdGet$Plain(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<SubCategoryDetails> {
 
-    return this.apiSubCategoryIdGetSubCategoryByIdGet$Plain$Response(params).pipe(
+    return this.apiSubCategoryIdGetSubCategoryByIdGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<SubCategoryDetails>) => r.body as SubCategoryDetails)
     );
   }
@@ -271,8 +281,9 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdGetSubCategoryByIdGet$Json$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<SubCategoryDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdGetSubCategoryByIdGetPath, 'get');
@@ -283,7 +294,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -293,18 +304,19 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdGetSubCategoryByIdGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryIdGetSubCategoryByIdGet$Json(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<SubCategoryDetails> {
 
-    return this.apiSubCategoryIdGetSubCategoryByIdGet$Json$Response(params).pipe(
+    return this.apiSubCategoryIdGetSubCategoryByIdGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<SubCategoryDetails>) => r.body as SubCategoryDetails)
     );
   }
@@ -322,9 +334,10 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdCreateSubCategoryPost$Response(params: {
     id: string;
-    context?: HttpContext
     body?: CreateSubCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdCreateSubCategoryPostPath, 'post');
@@ -336,7 +349,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -346,19 +359,20 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdCreateSubCategoryPost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiSubCategoryIdCreateSubCategoryPost(params: {
     id: string;
-    context?: HttpContext
     body?: CreateSubCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiSubCategoryIdCreateSubCategoryPost$Response(params).pipe(
+    return this.apiSubCategoryIdCreateSubCategoryPost$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -376,9 +390,10 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdUpdateSubCategoryPatch$Response(params: {
     id: string;
-    context?: HttpContext
     body?: UpdateSubCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdUpdateSubCategoryPatchPath, 'patch');
@@ -390,7 +405,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -400,19 +415,20 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdUpdateSubCategoryPatch$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiSubCategoryIdUpdateSubCategoryPatch(params: {
     id: string;
-    context?: HttpContext
     body?: UpdateSubCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiSubCategoryIdUpdateSubCategoryPatch$Response(params).pipe(
+    return this.apiSubCategoryIdUpdateSubCategoryPatch$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -430,8 +446,9 @@ export class SubCategoryService extends BaseService {
    */
   apiSubCategoryIdDeleteSubCategoryDelete$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, SubCategoryService.ApiSubCategoryIdDeleteSubCategoryDeletePath, 'delete');
@@ -442,7 +459,7 @@ export class SubCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -452,18 +469,19 @@ export class SubCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSubCategoryIdDeleteSubCategoryDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSubCategoryIdDeleteSubCategoryDelete(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiSubCategoryIdDeleteSubCategoryDelete$Response(params).pipe(
+    return this.apiSubCategoryIdDeleteSubCategoryDelete$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

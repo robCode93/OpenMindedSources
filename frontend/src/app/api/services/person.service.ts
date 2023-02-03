@@ -36,8 +36,9 @@ export class PersonService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiPersonGetAllPersonsGet$Plain$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<PersonDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonGetAllPersonsGetPath, 'get');
@@ -47,7 +48,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -57,17 +58,18 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonGetAllPersonsGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiPersonGetAllPersonsGet$Plain(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<PersonDetails>> {
 
-    return this.apiPersonGetAllPersonsGet$Plain$Response(params).pipe(
+    return this.apiPersonGetAllPersonsGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<PersonDetails>>) => r.body as Array<PersonDetails>)
     );
   }
@@ -79,8 +81,9 @@ export class PersonService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiPersonGetAllPersonsGet$Json$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<PersonDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonGetAllPersonsGetPath, 'get');
@@ -90,7 +93,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -100,17 +103,18 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonGetAllPersonsGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiPersonGetAllPersonsGet$Json(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<PersonDetails>> {
 
-    return this.apiPersonGetAllPersonsGet$Json$Response(params).pipe(
+    return this.apiPersonGetAllPersonsGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<PersonDetails>>) => r.body as Array<PersonDetails>)
     );
   }
@@ -129,8 +133,9 @@ export class PersonService extends BaseService {
   apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Plain$Response(params: {
     startDate: string;
     endDate: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<PersonDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonStartDateGetPersonsByTimeSpanEndDateGetPath, 'get');
@@ -142,7 +147,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -152,7 +157,7 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -160,11 +165,12 @@ export class PersonService extends BaseService {
   apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Plain(params: {
     startDate: string;
     endDate: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<PersonDetails>> {
 
-    return this.apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Plain$Response(params).pipe(
+    return this.apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<PersonDetails>>) => r.body as Array<PersonDetails>)
     );
   }
@@ -178,8 +184,9 @@ export class PersonService extends BaseService {
   apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Json$Response(params: {
     startDate: string;
     endDate: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<PersonDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonStartDateGetPersonsByTimeSpanEndDateGetPath, 'get');
@@ -191,7 +198,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -201,7 +208,7 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -209,11 +216,12 @@ export class PersonService extends BaseService {
   apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Json(params: {
     startDate: string;
     endDate: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<PersonDetails>> {
 
-    return this.apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Json$Response(params).pipe(
+    return this.apiPersonStartDateGetPersonsByTimeSpanEndDateGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<PersonDetails>>) => r.body as Array<PersonDetails>)
     );
   }
@@ -231,8 +239,9 @@ export class PersonService extends BaseService {
    */
   apiPersonIdGetPersonByIdGet$Plain$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<PersonDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonIdGetPersonByIdGetPath, 'get');
@@ -243,7 +252,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -253,18 +262,19 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonIdGetPersonByIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiPersonIdGetPersonByIdGet$Plain(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<PersonDetails> {
 
-    return this.apiPersonIdGetPersonByIdGet$Plain$Response(params).pipe(
+    return this.apiPersonIdGetPersonByIdGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<PersonDetails>) => r.body as PersonDetails)
     );
   }
@@ -277,8 +287,9 @@ export class PersonService extends BaseService {
    */
   apiPersonIdGetPersonByIdGet$Json$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<PersonDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonIdGetPersonByIdGetPath, 'get');
@@ -289,7 +300,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -299,18 +310,19 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonIdGetPersonByIdGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiPersonIdGetPersonByIdGet$Json(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<PersonDetails> {
 
-    return this.apiPersonIdGetPersonByIdGet$Json$Response(params).pipe(
+    return this.apiPersonIdGetPersonByIdGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<PersonDetails>) => r.body as PersonDetails)
     );
   }
@@ -327,9 +339,10 @@ export class PersonService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPersonCreatePersonPost$Response(params?: {
-    context?: HttpContext
     body?: CreatePersonModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonCreatePersonPostPath, 'post');
@@ -340,7 +353,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -350,18 +363,19 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonCreatePersonPost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPersonCreatePersonPost(params?: {
-    context?: HttpContext
     body?: CreatePersonModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiPersonCreatePersonPost$Response(params).pipe(
+    return this.apiPersonCreatePersonPost$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -379,9 +393,10 @@ export class PersonService extends BaseService {
    */
   apiPersonIdUpdatePersonPatch$Response(params: {
     id: string;
-    context?: HttpContext
     body?: UpdatePersonModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonIdUpdatePersonPatchPath, 'patch');
@@ -393,7 +408,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -403,19 +418,20 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonIdUpdatePersonPatch$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPersonIdUpdatePersonPatch(params: {
     id: string;
-    context?: HttpContext
     body?: UpdatePersonModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiPersonIdUpdatePersonPatch$Response(params).pipe(
+    return this.apiPersonIdUpdatePersonPatch$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -434,8 +450,9 @@ export class PersonService extends BaseService {
   apiPersonSourceIdAddSourceToPersonPersonIdPatch$Response(params: {
     sourceId: string;
     personId: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonSourceIdAddSourceToPersonPersonIdPatchPath, 'patch');
@@ -447,7 +464,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -457,7 +474,7 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonSourceIdAddSourceToPersonPersonIdPatch$Response()` instead.
    *
    * This method doesn't expect any request body.
@@ -465,11 +482,12 @@ export class PersonService extends BaseService {
   apiPersonSourceIdAddSourceToPersonPersonIdPatch(params: {
     sourceId: string;
     personId: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiPersonSourceIdAddSourceToPersonPersonIdPatch$Response(params).pipe(
+    return this.apiPersonSourceIdAddSourceToPersonPersonIdPatch$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -487,8 +505,9 @@ export class PersonService extends BaseService {
    */
   apiPersonIdDeletePersonDelete$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, PersonService.ApiPersonIdDeletePersonDeletePath, 'delete');
@@ -499,7 +518,7 @@ export class PersonService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -509,18 +528,19 @@ export class PersonService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiPersonIdDeletePersonDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiPersonIdDeletePersonDelete(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiPersonIdDeletePersonDelete$Response(params).pipe(
+    return this.apiPersonIdDeletePersonDelete$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

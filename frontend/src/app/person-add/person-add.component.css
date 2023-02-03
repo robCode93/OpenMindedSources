@@ -1,0 +1,99 @@
+/* ########## BASICS ########## */
+.siteHeader{
+    margin-top: 2rem;
+}
+
+.disabled{
+    opacity: 0.5;
+}
+
+/* ########## THUMBNAILAREA ########## */
+.thumbnailArea .imageContainer{
+    width: 90%;
+    height: 20rem;
+}
+
+.thumbnailArea .imageContainer img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.thumbnailArea .dataSet{
+    margin-top: 1.5rem;
+}
+
+/* ########## CONTENTAREA ########## */
+.contentArea{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.contentArea .thumbnailArea{
+    width: 30%;
+}
+
+.contentArea .infoArea{
+    width: 70%;
+}
+
+/* ########## INNERCARD ########## */
+.contentArea .infoArea .innerCard{
+    width: 90%;
+    height: 50rem;
+    padding: 1rem;
+    -webkit-box-shadow: 5px 11px 33px 14px rgba(0,0,0,0.24); 
+    box-shadow: 5px 11px 33px 14px rgba(0,0,0,0.24);
+    display: flex;
+    flex-direction: column;
+}
+
+.contentArea .infoArea .innerCard .innerCardInfo{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.innerCard .leftForm, .innerCard .rightForm{
+    width: 50%;
+    padding: 1rem;
+}
+
+.innerCard .dataSet{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.innerCard .checkSet{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.innerCard .dataSet input{
+    border: 1px solid rgba(0,0,0,0.24);
+    padding: 0.75rem;
+    width: 98%;
+    border-radius: 0.5rem;
+}
+
+.innerCard .dataSet textarea{
+    border: 1px solid rgba(0,0,0,0.24);
+    padding: 0.75rem;
+    width: 98%;
+    max-height: 20rem;
+    border-radius: 0.5rem;
+}
+
+.innerCard .innerCardActions{
+    margin-top: 1rem;
+    padding-left: 1rem;
+}
+
+.innerCard .innerCardActions div{
+    margin-right: 1rem;
+}

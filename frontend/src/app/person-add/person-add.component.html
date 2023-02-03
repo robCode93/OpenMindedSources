@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="ui breadcrumb">
+        <a class="section">Open-Mind-Database</a>
+        <i class="right angle icon divider"></i>
+        <a class="section">Personen</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">Hinzufügen</div>
+    </div>
+</div>
+<div class="row" class="siteHeader">
+    <div class="ui horizontal statistic">
+        <div class="value">
+            Person
+        </div>
+        <div class="label">
+            Füge eine neue Person / Institution für Quellen hinzu
+        </div>
+    </div>
+</div>
+<div class="row contentArea">
+    <div class="thumbnailArea">
+        <div class="imageContainer">
+            <img [src]="thumbnailPreviewUrl">
+        </div>
+        <div class="dataSet">
+            <input type="file" class="fileInput">
+            <div class="ui orange icon button">
+                <i class="upload icon"></i>
+                Thumbnail hochladen
+            </div>
+        </div>
+    </div>
+    <div class="infoArea">
+        <div class="innerCard">
+            <div class="innerCardInfo">
+                <div class="leftForm">
+                    <div class="dataSet">
+                        <label for="title">Titel</label>
+                        <input type="text" name="title" placeholder="Titel...">
+                    </div>
+                    <div class="dataSet">
+                        <label for="firstName">Vorname(n)</label>
+                        <input type="text" name="firstName" placeholder="Max">
+                    </div>
+                    <div class="dataSet">
+                        <label for="lastName">Nachname</label>
+                        <input type="text" name="lastName" placeholder="Mustermann">
+                    </div>
+                    <div class="dataSet">
+                        <label for="description">Beschreibung hinzufügen (max 250 Worte)</label>
+                        <textarea name="description" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="rightForm">
+                    <div class="dataSet">
+                        <label for="nationality">Nationalität</label>
+                        <input type="text" name="nationality" list="countryList" placeholder="Musterland">
+                        <datalist id="countryList">
+                            <option [value]="country.name" *ngFor="let country of _countries">{{country.name}}</option>
+                        </datalist>
+                    </div>
+                    <div class="dataSet">
+                        <label for="birthDate">Geburtsdatum</label>
+                        <input type="date" name="birthDate">
+                    </div>
+                    <div class="checkSet">
+                        <label for="isDeath">Verstorben</label>
+                        <input class="ui checkbox" type="checkbox" name="isDeath" (change)="isDeath = !isDeath">
+                    </div>
+                    <div class="dataSet">
+                        <label for="deathDate" [ngClass]="{'disabled' : !isDeath}">Todesdatum</label>
+                        <input type="date" name="deathDate" [disabled]="!isDeath" [ngClass]="{'disabled' : !isDeath}">
+                    </div>
+                </div>
+            </div>
+            <div class="innerCardActions">
+                <div class="ui icon button">
+                    <i class="plus icon"></i>
+                    Datensatz anlegen
+                </div>
+                <div class="ui red icon button">
+                    <i class="ui eraser icon"></i>
+                    Änderungen verwerfen
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

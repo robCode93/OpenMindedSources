@@ -1,36 +1,38 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">OpenMindSources</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
+<div class="ui grid">
+    <div class="row" id="menuRow">
+        <div class="sixteen wide column">
+            <div class="ui menu">
+                <a class="item">
+                  Home
+                </a>
+                <div class="ui pointing dropdown link item" (click)="toggleMenuButton($event)">
+                    <span class="text">Kategorien</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu transition" [ngClass]="dropdownCategories ? 'visible' : 'hidden'">
+                        <div class="item" *ngFor="let category of categories">{{category.name}}</div>
+                        <div class="divider" *ngIf="categories.length > 0"></div>
+                        <div class="item" (click)="navigateTo('categories/add')">Kategorie anlegen</div>
+                        <div class="item">Kategorien verwalten</div>
+                    </div>
+                </div>
+                <div class="ui pointing dropdown link item" (click)="toggleMenuButton($event)">
+                    <span class="text">Personen</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu transition" [ngClass]="dropdownPersons ? 'visible' : 'hidden'">
+                        <div class="item" *ngFor="let category of categories">{{category.name}}</div>
+                        <div class="divider" *ngIf="persons.length > 0"></div>
+                        <div class="item" (click)="navigateTo('persons/add')">Person anlegen</div>
+                        <div class="item">Personen verwalten</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
+    <div class="row">
+        <div class="one wide column"></div>
+        <div class="fourteen wide column">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="one wide column"></div>
+    </div>
+</div>

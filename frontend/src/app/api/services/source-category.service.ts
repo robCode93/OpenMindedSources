@@ -36,8 +36,9 @@ export class SourceCategoryService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiSourceCategoryGetAllSourceCategoriesGet$Plain$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<SourceCategoryDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryGetAllSourceCategoriesGetPath, 'get');
@@ -47,7 +48,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -57,17 +58,18 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryGetAllSourceCategoriesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSourceCategoryGetAllSourceCategoriesGet$Plain(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<SourceCategoryDetails>> {
 
-    return this.apiSourceCategoryGetAllSourceCategoriesGet$Plain$Response(params).pipe(
+    return this.apiSourceCategoryGetAllSourceCategoriesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<SourceCategoryDetails>>) => r.body as Array<SourceCategoryDetails>)
     );
   }
@@ -79,8 +81,9 @@ export class SourceCategoryService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiSourceCategoryGetAllSourceCategoriesGet$Json$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<SourceCategoryDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryGetAllSourceCategoriesGetPath, 'get');
@@ -90,7 +93,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -100,17 +103,18 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryGetAllSourceCategoriesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSourceCategoryGetAllSourceCategoriesGet$Json(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<SourceCategoryDetails>> {
 
-    return this.apiSourceCategoryGetAllSourceCategoriesGet$Json$Response(params).pipe(
+    return this.apiSourceCategoryGetAllSourceCategoriesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<SourceCategoryDetails>>) => r.body as Array<SourceCategoryDetails>)
     );
   }
@@ -128,8 +132,9 @@ export class SourceCategoryService extends BaseService {
    */
   apiSourceCategoryIdGetSourceCategoryByIdGet$Plain$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<SourceCategoryDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryIdGetSourceCategoryByIdGetPath, 'get');
@@ -140,7 +145,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -150,18 +155,19 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryIdGetSourceCategoryByIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSourceCategoryIdGetSourceCategoryByIdGet$Plain(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<SourceCategoryDetails> {
 
-    return this.apiSourceCategoryIdGetSourceCategoryByIdGet$Plain$Response(params).pipe(
+    return this.apiSourceCategoryIdGetSourceCategoryByIdGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<SourceCategoryDetails>) => r.body as SourceCategoryDetails)
     );
   }
@@ -174,8 +180,9 @@ export class SourceCategoryService extends BaseService {
    */
   apiSourceCategoryIdGetSourceCategoryByIdGet$Json$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<SourceCategoryDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryIdGetSourceCategoryByIdGetPath, 'get');
@@ -186,7 +193,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -196,18 +203,19 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryIdGetSourceCategoryByIdGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSourceCategoryIdGetSourceCategoryByIdGet$Json(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<SourceCategoryDetails> {
 
-    return this.apiSourceCategoryIdGetSourceCategoryByIdGet$Json$Response(params).pipe(
+    return this.apiSourceCategoryIdGetSourceCategoryByIdGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<SourceCategoryDetails>) => r.body as SourceCategoryDetails)
     );
   }
@@ -224,9 +232,10 @@ export class SourceCategoryService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiSourceCategoryCreateSourceCategoryPost$Response(params?: {
-    context?: HttpContext
     body?: CreateSourceCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryCreateSourceCategoryPostPath, 'post');
@@ -237,7 +246,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -247,18 +256,19 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryCreateSourceCategoryPost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiSourceCategoryCreateSourceCategoryPost(params?: {
-    context?: HttpContext
     body?: CreateSourceCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiSourceCategoryCreateSourceCategoryPost$Response(params).pipe(
+    return this.apiSourceCategoryCreateSourceCategoryPost$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -276,9 +286,10 @@ export class SourceCategoryService extends BaseService {
    */
   apiSourceCategoryIdUpdateSourceCategoryPatch$Response(params: {
     id: string;
-    context?: HttpContext
     body?: UpdateSourceCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryIdUpdateSourceCategoryPatchPath, 'patch');
@@ -290,7 +301,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -300,19 +311,20 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryIdUpdateSourceCategoryPatch$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiSourceCategoryIdUpdateSourceCategoryPatch(params: {
     id: string;
-    context?: HttpContext
     body?: UpdateSourceCategoryModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiSourceCategoryIdUpdateSourceCategoryPatch$Response(params).pipe(
+    return this.apiSourceCategoryIdUpdateSourceCategoryPatch$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -330,8 +342,9 @@ export class SourceCategoryService extends BaseService {
    */
   apiSourceCategoryIdDeleteSourceCategoryDelete$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, SourceCategoryService.ApiSourceCategoryIdDeleteSourceCategoryDeletePath, 'delete');
@@ -342,7 +355,7 @@ export class SourceCategoryService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -352,18 +365,19 @@ export class SourceCategoryService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiSourceCategoryIdDeleteSourceCategoryDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiSourceCategoryIdDeleteSourceCategoryDelete(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiSourceCategoryIdDeleteSourceCategoryDelete$Response(params).pipe(
+    return this.apiSourceCategoryIdDeleteSourceCategoryDelete$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }

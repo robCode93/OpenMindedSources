@@ -35,8 +35,9 @@ export class FileReferenceService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiFileReferenceGetAllFileReferencesGet$Plain$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<FileReferenceDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceGetAllFileReferencesGetPath, 'get');
@@ -46,7 +47,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -56,17 +57,18 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceGetAllFileReferencesGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiFileReferenceGetAllFileReferencesGet$Plain(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<FileReferenceDetails>> {
 
-    return this.apiFileReferenceGetAllFileReferencesGet$Plain$Response(params).pipe(
+    return this.apiFileReferenceGetAllFileReferencesGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<FileReferenceDetails>>) => r.body as Array<FileReferenceDetails>)
     );
   }
@@ -78,8 +80,9 @@ export class FileReferenceService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiFileReferenceGetAllFileReferencesGet$Json$Response(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<Array<FileReferenceDetails>>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceGetAllFileReferencesGetPath, 'get');
@@ -89,7 +92,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -99,17 +102,18 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceGetAllFileReferencesGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiFileReferenceGetAllFileReferencesGet$Json(params?: {
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<Array<FileReferenceDetails>> {
 
-    return this.apiFileReferenceGetAllFileReferencesGet$Json$Response(params).pipe(
+    return this.apiFileReferenceGetAllFileReferencesGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<Array<FileReferenceDetails>>) => r.body as Array<FileReferenceDetails>)
     );
   }
@@ -127,8 +131,9 @@ export class FileReferenceService extends BaseService {
    */
   apiFileReferenceIdGetFileReferenceByIdGet$Plain$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<FileReferenceDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceIdGetFileReferenceByIdGetPath, 'get');
@@ -139,7 +144,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -149,18 +154,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceIdGetFileReferenceByIdGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiFileReferenceIdGetFileReferenceByIdGet$Plain(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<FileReferenceDetails> {
 
-    return this.apiFileReferenceIdGetFileReferenceByIdGet$Plain$Response(params).pipe(
+    return this.apiFileReferenceIdGetFileReferenceByIdGet$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<FileReferenceDetails>) => r.body as FileReferenceDetails)
     );
   }
@@ -173,8 +179,9 @@ export class FileReferenceService extends BaseService {
    */
   apiFileReferenceIdGetFileReferenceByIdGet$Json$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<FileReferenceDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceIdGetFileReferenceByIdGetPath, 'get');
@@ -185,7 +192,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -195,18 +202,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceIdGetFileReferenceByIdGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiFileReferenceIdGetFileReferenceByIdGet$Json(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<FileReferenceDetails> {
 
-    return this.apiFileReferenceIdGetFileReferenceByIdGet$Json$Response(params).pipe(
+    return this.apiFileReferenceIdGetFileReferenceByIdGet$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<FileReferenceDetails>) => r.body as FileReferenceDetails)
     );
   }
@@ -224,8 +232,9 @@ export class FileReferenceService extends BaseService {
    */
   apiFileReferenceIdDownloadFileFromDatabaseGet$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceIdDownloadFileFromDatabaseGetPath, 'get');
@@ -236,7 +245,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -246,18 +255,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceIdDownloadFileFromDatabaseGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiFileReferenceIdDownloadFileFromDatabaseGet(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiFileReferenceIdDownloadFileFromDatabaseGet$Response(params).pipe(
+    return this.apiFileReferenceIdDownloadFileFromDatabaseGet$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -274,9 +284,10 @@ export class FileReferenceService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiFileReferenceCreateFileReferencePost$Response(params?: {
-    context?: HttpContext
     body?: CreateFileReferenceModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceCreateFileReferencePostPath, 'post');
@@ -287,7 +298,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -297,18 +308,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceCreateFileReferencePost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiFileReferenceCreateFileReferencePost(params?: {
-    context?: HttpContext
     body?: CreateFileReferenceModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiFileReferenceCreateFileReferencePost$Response(params).pipe(
+    return this.apiFileReferenceCreateFileReferencePost$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
@@ -325,9 +337,10 @@ export class FileReferenceService extends BaseService {
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiFileReferenceUploadFileToDatabasePost$Plain$Response(params?: {
-    context?: HttpContext
     body?: CreateFileReferenceModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<FileReferenceDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceUploadFileToDatabasePostPath, 'post');
@@ -338,7 +351,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -348,18 +361,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceUploadFileToDatabasePost$Plain$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiFileReferenceUploadFileToDatabasePost$Plain(params?: {
-    context?: HttpContext
     body?: CreateFileReferenceModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<FileReferenceDetails> {
 
-    return this.apiFileReferenceUploadFileToDatabasePost$Plain$Response(params).pipe(
+    return this.apiFileReferenceUploadFileToDatabasePost$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<FileReferenceDetails>) => r.body as FileReferenceDetails)
     );
   }
@@ -371,9 +385,10 @@ export class FileReferenceService extends BaseService {
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiFileReferenceUploadFileToDatabasePost$Json$Response(params?: {
-    context?: HttpContext
     body?: CreateFileReferenceModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<FileReferenceDetails>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceUploadFileToDatabasePostPath, 'post');
@@ -384,7 +399,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -394,18 +409,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceUploadFileToDatabasePost$Json$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
   apiFileReferenceUploadFileToDatabasePost$Json(params?: {
-    context?: HttpContext
     body?: CreateFileReferenceModel
-  }
+  },
+  context?: HttpContext
+
 ): Observable<FileReferenceDetails> {
 
-    return this.apiFileReferenceUploadFileToDatabasePost$Json$Response(params).pipe(
+    return this.apiFileReferenceUploadFileToDatabasePost$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<FileReferenceDetails>) => r.body as FileReferenceDetails)
     );
   }
@@ -423,8 +439,9 @@ export class FileReferenceService extends BaseService {
    */
   apiFileReferenceIdDeleteFileReferenceDelete$Response(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceIdDeleteFileReferenceDeletePath, 'delete');
@@ -435,7 +452,7 @@ export class FileReferenceService extends BaseService {
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*',
-      context: params?.context
+      context: context
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
@@ -445,18 +462,19 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * This method provides access to only to the response body.
+   * This method provides access only to the response body.
    * To access the full response (for headers, for example), `apiFileReferenceIdDeleteFileReferenceDelete$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
   apiFileReferenceIdDeleteFileReferenceDelete(params: {
     id: string;
-    context?: HttpContext
-  }
+  },
+  context?: HttpContext
+
 ): Observable<void> {
 
-    return this.apiFileReferenceIdDeleteFileReferenceDelete$Response(params).pipe(
+    return this.apiFileReferenceIdDeleteFileReferenceDelete$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
