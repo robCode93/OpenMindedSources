@@ -58,7 +58,7 @@ namespace backend.Services
             return model;
         }
 
-        public FileReferenceDetails UploadFileToDatabase(Stream file, string mimeType, CreateFileReferenceModel createModel)
+        public FileReferenceDetails UploadFileToDatabase(Stream file, string mimeType, Guid subjectId, string subjectType)
         {
             string directoryName = mimeType.Split('/')[0];
             string directoryPath = "./openmind-data/" + directoryName;
@@ -81,9 +81,15 @@ namespace backend.Services
             reference.FileName = filePath;
             reference.FileSizeInBytes = file.Length;
             reference.MimeType = mimeType;
-            reference.OnSource = createModel.OnSource;
-            reference.OnPerson = createModel.OnPerson;
             reference.CreationDate = DateTime.Now;
+
+            if (subjectType == "p")
+            {
+                reference.OnPerson = subjectId;
+            }else if(subjectType == "s")
+            {
+                reference.OnSource = subjectId;
+            }
 
             _context.FileReferences.Add(reference);
             _context.SaveChanges();

@@ -51,7 +51,7 @@ namespace backend.Services
         }
 
         // ########## create-Methoden ##########
-        public ResponseModel CreateSource(CreateSourceModel createModel)
+        public ResponseModel CreateSource(Guid id, CreateSourceModel createModel)
         {
             ResponseModel model = new ResponseModel();
             var person = _context.Persons.Include(p => p.Sources).Include(p => p.Thumbnail).FirstOrDefault(p => p.Id == createModel.PersonId);
@@ -68,7 +68,7 @@ namespace backend.Services
             }
 
             Source source = new Source();
-            source.Id = Guid.NewGuid();
+            source.Id = id;
             source.Name = createModel.Name;
             source.Description = createModel.Description;
             source.DateOfCreation = createModel.DateOfCreation;

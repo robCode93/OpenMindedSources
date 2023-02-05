@@ -12,7 +12,7 @@ namespace backend.ServiceInterfaces
         public List<SourceDetails> GetSourcesByTimeSpan(DateTime startDate, DateTime endDate);
 
         // ########## CREATE-Methoden ##########
-        public ResponseModel CreateSource(CreateSourceModel createModel);
+        public ResponseModel CreateSource(Guid id, CreateSourceModel createModel);
 
         // ########## UPDATE-Methoden ##########
         public ResponseModel UpdateSource(Guid id, UpdateSourceModel updateModel);

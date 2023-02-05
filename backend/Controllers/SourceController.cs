@@ -125,12 +125,12 @@ namespace backend.Controllers
 
         // ########## CREATE-Methoden ##########
         [HttpPost]
-        [Route("[action]")]
-        public IActionResult CreateSource(CreateSourceModel createModel)
+        [Route("{id}/[action]")]
+        public IActionResult CreateSource([FromRoute] Guid id, CreateSourceModel createModel)
         {
             try
             {
-                var model = _sourceService.CreateSource(createModel);
+                var model = _sourceService.CreateSource(id, createModel);
                 return Ok(model);
             }
             catch (Exception ex)

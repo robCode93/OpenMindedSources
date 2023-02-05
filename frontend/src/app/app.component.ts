@@ -30,40 +30,47 @@ export class AppComponent {
   toggleMenuButton(event: Event){
     const element = this.getHtmlElement(event.target as HTMLElement) as HTMLSpanElement;
 
-    if(element.innerText === "Kategorien"){
-      if(this.dropdownCategories){
-        this.dropdownCategories = false;
-        this.dropdownPersons = false;
-      }else{
-        this.dropdownCategories = true;
-        this.dropdownPersons = false;
+    try{
+      if(element.classList && element.classList.contains("categoryLink")){
+        if(this.dropdownCategories){
+          this.dropdownCategories = false;
+          this.dropdownPersons = false;
+        }else{
+          this.dropdownCategories = true;
+          this.dropdownPersons = false;
+        }
+      }
+  
+      if(element.classList && element.classList.contains("personLink")){
+        if(this.dropdownPersons){
+          this.dropdownCategories = false;
+          this.dropdownPersons = false;
+        }else{
+          this.dropdownCategories = false;
+          this.dropdownPersons = true;
+        }
       }
     }
-
-    if(element.innerText === "Personen"){
-      if(this.dropdownPersons){
-        this.dropdownCategories = false;
-        this.dropdownPersons = false;
-      }else{
-        this.dropdownCategories = false;
-        this.dropdownPersons = true;
-      }
+    catch(e){
     }
   }
 
   getHtmlElement(element: HTMLElement){
     if(element instanceof HTMLDivElement){
-      return element.children[0] as HTMLElement;
+      return element.children[0] as HTMLSpanElement;
     }
 
     if(element instanceof HTMLSpanElement){
       return element;
     }
 
-    return element.parentElement!.children[0];
+    return element.parentElement!.children[0] as HTMLSpanElement;
   }
 
   navigateTo(path: string){
+    this.dropdownCategories = false;
+    this.dropdownPersons = false;
+    
     this.router.navigate(["/" + path]);
   }
 }

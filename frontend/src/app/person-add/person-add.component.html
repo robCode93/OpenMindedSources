@@ -1,3 +1,10 @@
+<div *ngIf="errorExists" class="ui negative message" id="error">
+    <i class="close icon" (click)="errorExists = !errorExists"></i>
+    <div class="header">
+      {{errorHeader}}
+    </div>
+    <p>{{errorMessage}}</p>
+</div>
 <div class="row">
     <div class="ui breadcrumb">
         <a class="section">Open-Mind-Database</a>
@@ -23,8 +30,8 @@
             <img [src]="thumbnailPreviewUrl">
         </div>
         <div class="dataSet">
-            <input type="file" class="fileInput">
-            <div class="ui orange icon button">
+            <input type="file" class="fileInput" (change)="selectFile($event)">
+            <div class="ui orange icon button" (click)="uploadThumbnail()">
                 <i class="upload icon"></i>
                 Thumbnail hochladen
             </div>
@@ -36,32 +43,32 @@
                 <div class="leftForm">
                     <div class="dataSet">
                         <label for="title">Titel</label>
-                        <input type="text" name="title" placeholder="Titel...">
+                        <input type="text" name="title" placeholder="Titel..." [(ngModel)]="title">
                     </div>
                     <div class="dataSet">
                         <label for="firstName">Vorname(n)</label>
-                        <input type="text" name="firstName" placeholder="Max">
+                        <input type="text" name="firstName" placeholder="Max" [(ngModel)]="firstName">
                     </div>
                     <div class="dataSet">
                         <label for="lastName">Nachname</label>
-                        <input type="text" name="lastName" placeholder="Mustermann">
+                        <input type="text" name="lastName" placeholder="Mustermann" [(ngModel)]="lastName">
                     </div>
                     <div class="dataSet">
                         <label for="description">Beschreibung hinzufügen (max 250 Worte)</label>
-                        <textarea name="description" cols="30" rows="10"></textarea>
+                        <textarea name="description" [(ngModel)]="description"></textarea>
                     </div>
                 </div>
                 <div class="rightForm">
                     <div class="dataSet">
                         <label for="nationality">Nationalität</label>
-                        <input type="text" name="nationality" list="countryList" placeholder="Musterland">
+                        <input type="text" name="nationality" list="countryList" placeholder="Musterland" [(ngModel)]="nationality">
                         <datalist id="countryList">
                             <option [value]="country.name" *ngFor="let country of _countries">{{country.name}}</option>
                         </datalist>
                     </div>
                     <div class="dataSet">
                         <label for="birthDate">Geburtsdatum</label>
-                        <input type="date" name="birthDate">
+                        <input type="date" name="birthDate" [(ngModel)]="birthDate">
                     </div>
                     <div class="checkSet">
                         <label for="isDeath">Verstorben</label>
@@ -69,16 +76,16 @@
                     </div>
                     <div class="dataSet">
                         <label for="deathDate" [ngClass]="{'disabled' : !isDeath}">Todesdatum</label>
-                        <input type="date" name="deathDate" [disabled]="!isDeath" [ngClass]="{'disabled' : !isDeath}">
+                        <input type="date" name="deathDate" [disabled]="!isDeath" [ngClass]="{'disabled' : !isDeath}" [(ngModel)]="deathDate">
                     </div>
                 </div>
             </div>
             <div class="innerCardActions">
-                <div class="ui icon button">
+                <div class="ui icon button" (click)="createPerson()">
                     <i class="plus icon"></i>
                     Datensatz anlegen
                 </div>
-                <div class="ui red icon button">
+                <div class="ui red icon button" (click)="discardChanges()">
                     <i class="ui eraser icon"></i>
                     Änderungen verwerfen
                 </div>

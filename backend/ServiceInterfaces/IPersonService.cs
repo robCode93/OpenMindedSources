@@ -12,7 +12,7 @@ namespace backend.ServiceInterfaces
         public List<PersonDetails> GetPersonsByTimeSpan(DateTime startDate, DateTime endDate);
 
         // ########## CREATE-Methoden ##########
-        public ResponseModel CreatePerson(CreatePersonModel createModel);
+        public ResponseModel CreatePerson(Guid id, CreatePersonModel createModel);
 
         // ########## UPDATE-Methoden ##########
         public ResponseModel UpdatePerson(Guid id, UpdatePersonModel updateModel);

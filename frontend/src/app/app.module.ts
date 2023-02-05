@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonAddComponent } from './person-add/person-add.component';
 import { CategoryAddComponent } from './category-add/category-add.component';
+import { PersonViewComponent } from './person-view/person-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonAddComponent,
-    CategoryAddComponent
+    CategoryAddComponent,
+    PersonViewComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,10 @@ import { CategoryAddComponent } from './category-add/category-add.component';
       {
         path: "persons/add",
         component: PersonAddComponent
+      },
+      {
+        path: "persons/view",
+        component: PersonViewComponent
       },
       {
         path: "categories/add",

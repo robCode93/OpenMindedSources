@@ -7,6 +7,14 @@
     opacity: 0.5;
 }
 
+/* ########## ERROR-HANDLING ########## */
+#error{
+    width: 40%;
+    position: fixed;
+    top: 5rem;
+    left: 30%;
+}
+
 /* ########## THUMBNAILAREA ########## */
 .thumbnailArea .imageContainer{
     width: 90%;
@@ -85,6 +93,7 @@
     border: 1px solid rgba(0,0,0,0.24);
     padding: 0.75rem;
     width: 98%;
+    min-height: 10rem;
     max-height: 20rem;
     border-radius: 0.5rem;
 }

@@ -35,7 +35,7 @@ namespace backend.Controllers
                     {
                         fileReference.DownloadUrl = Url.Action("DownloadFileFromDatabase", "FileReference", new
                         {
-                            id = fileReference.FileName,
+                            id = fileReference.Id,
                         });
                     }
                 }
@@ -61,7 +61,7 @@ namespace backend.Controllers
                 {
                     model.DownloadUrl = Url.Action("DownloadFileFromDatabase", "FileReference", new
                     {
-                        id = model.FileName,
+                        id = model.Id,
                     });
                 }
 
@@ -114,9 +114,9 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        [Route("[action]")]
+        [Route("{subjectType}/[action]/{subjectId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FileReferenceDetails))]
-        public IActionResult UploadFileToDatabase(IFormFile file, CreateFileReferenceModel createModel)
+        public IActionResult UploadFileToDatabase(IFormFile file, [FromRoute] string subjectType, [FromRoute] Guid subjectId)
         {
             try
             {
@@ -128,7 +128,16 @@ namespace backend.Controllers
                 //ms.Seek(0, SeekOrigin.Begin);
                 //ms.Position = 0;
 
-                var model = _fileReferenceService.UploadFileToDatabase(file.OpenReadStream(), mimeType, createModel);
+                var model = _fileReferenceService.UploadFileToDatabase(file.OpenReadStream(), mimeType, subjectId, subjectType);
+
+                if (model.FileName is not null)
+                {
+                    model.DownloadUrl = Url.Action("DownloadFileFromDatabase", "FileReference", new
+                    {
+                        id = model.Id,
+                    });
+                }
+
                 return Ok(model);
             }
             catch (Exception ex)

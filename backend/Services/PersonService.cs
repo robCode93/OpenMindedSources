@@ -50,7 +50,7 @@ namespace backend.Services
         }
 
         // ########## CREATE-Methoden ##########
-        public ResponseModel CreatePerson(CreatePersonModel createModel)
+        public ResponseModel CreatePerson(Guid id, CreatePersonModel createModel)
         {
             ResponseModel model = new ResponseModel();
 
@@ -62,7 +62,7 @@ namespace backend.Services
             }
 
             Person person = new Person();
-            person.Id = Guid.NewGuid();
+            person.Id = id;
             person.Nationality = createModel.Nationality;
             person.Description = createModel.Description;
             person.DeathDate = createModel.DeathDate;
@@ -79,9 +79,9 @@ namespace backend.Services
 
             if(createModel.SourceIds is not null)
             {
-                foreach(var id in createModel.SourceIds)
+                foreach(var sourceId in createModel.SourceIds)
                 {
-                    var source = _context.Sources.Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Thumbnail).FirstOrDefault(s => s.Id == id);
+                    var source = _context.Sources.Include(s => s.SourceCategory).Include(s => s.FileReference).Include(s => s.Thumbnail).FirstOrDefault(s => s.Id == sourceId);
 
                     if(source is not null)
                     {

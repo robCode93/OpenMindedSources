@@ -326,25 +326,31 @@ export class FileReferenceService extends BaseService {
   }
 
   /**
-   * Path part for operation apiFileReferenceUploadFileToDatabasePost
+   * Path part for operation apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost
    */
-  static readonly ApiFileReferenceUploadFileToDatabasePostPath = '/api/FileReference/UploadFileToDatabase';
+  static readonly ApiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPostPath = '/api/FileReference/{subjectType}/UploadFileToDatabase/{subjectId}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiFileReferenceUploadFileToDatabasePost$Plain()` instead.
+   * To access only the response body, use `apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Plain()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiFileReferenceUploadFileToDatabasePost$Plain$Response(params?: {
-    body?: CreateFileReferenceModel
+  apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Plain$Response(params: {
+    subjectType: string;
+    subjectId: string;
+    body?: {
+'file'?: Blob;
+}
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<FileReferenceDetails>> {
 
-    const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceUploadFileToDatabasePostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPostPath, 'post');
     if (params) {
+      rb.path('subjectType', params.subjectType, {});
+      rb.path('subjectId', params.subjectId, {});
       rb.body(params.body, 'multipart/form-data');
     }
 
@@ -362,37 +368,47 @@ export class FileReferenceService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiFileReferenceUploadFileToDatabasePost$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Plain$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiFileReferenceUploadFileToDatabasePost$Plain(params?: {
-    body?: CreateFileReferenceModel
+  apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Plain(params: {
+    subjectType: string;
+    subjectId: string;
+    body?: {
+'file'?: Blob;
+}
   },
   context?: HttpContext
 
 ): Observable<FileReferenceDetails> {
 
-    return this.apiFileReferenceUploadFileToDatabasePost$Plain$Response(params,context).pipe(
+    return this.apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Plain$Response(params,context).pipe(
       map((r: StrictHttpResponse<FileReferenceDetails>) => r.body as FileReferenceDetails)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiFileReferenceUploadFileToDatabasePost$Json()` instead.
+   * To access only the response body, use `apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Json()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiFileReferenceUploadFileToDatabasePost$Json$Response(params?: {
-    body?: CreateFileReferenceModel
+  apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Json$Response(params: {
+    subjectType: string;
+    subjectId: string;
+    body?: {
+'file'?: Blob;
+}
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<FileReferenceDetails>> {
 
-    const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceUploadFileToDatabasePostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, FileReferenceService.ApiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPostPath, 'post');
     if (params) {
+      rb.path('subjectType', params.subjectType, {});
+      rb.path('subjectId', params.subjectId, {});
       rb.body(params.body, 'multipart/form-data');
     }
 
@@ -410,18 +426,22 @@ export class FileReferenceService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiFileReferenceUploadFileToDatabasePost$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Json$Response()` instead.
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  apiFileReferenceUploadFileToDatabasePost$Json(params?: {
-    body?: CreateFileReferenceModel
+  apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Json(params: {
+    subjectType: string;
+    subjectId: string;
+    body?: {
+'file'?: Blob;
+}
   },
   context?: HttpContext
 
 ): Observable<FileReferenceDetails> {
 
-    return this.apiFileReferenceUploadFileToDatabasePost$Json$Response(params,context).pipe(
+    return this.apiFileReferenceSubjectTypeUploadFileToDatabaseSubjectIdPost$Json$Response(params,context).pipe(
       map((r: StrictHttpResponse<FileReferenceDetails>) => r.body as FileReferenceDetails)
     );
   }

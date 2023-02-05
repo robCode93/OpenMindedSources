@@ -12,7 +12,7 @@ namespace backend.ServiceInterfaces
 
         // ########## CREATE-Methoden ##########
         public ResponseModel CreateFileReference(CreateFileReferenceModel createModel);
-        public FileReferenceDetails UploadFileToDatabase(Stream file, string mimeType, CreateFileReferenceModel createModel);
+        public FileReferenceDetails UploadFileToDatabase(Stream file, string mimeType, Guid subjectId, string subjectType);
 
         // ########## DELETE-Methoden ##########
         public ResponseModel DeleteFileReference(Guid id);

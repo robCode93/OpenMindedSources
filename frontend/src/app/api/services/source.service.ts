@@ -328,25 +328,27 @@ export class SourceService extends BaseService {
   }
 
   /**
-   * Path part for operation apiSourceCreateSourcePost
+   * Path part for operation apiSourceIdCreateSourcePost
    */
-  static readonly ApiSourceCreateSourcePostPath = '/api/Source/CreateSource';
+  static readonly ApiSourceIdCreateSourcePostPath = '/api/Source/{id}/CreateSource';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiSourceCreateSourcePost()` instead.
+   * To access only the response body, use `apiSourceIdCreateSourcePost()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiSourceCreateSourcePost$Response(params?: {
+  apiSourceIdCreateSourcePost$Response(params: {
+    id: string;
     body?: CreateSourceModel
   },
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<void>> {
 
-    const rb = new RequestBuilder(this.rootUrl, SourceService.ApiSourceCreateSourcePostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, SourceService.ApiSourceIdCreateSourcePostPath, 'post');
     if (params) {
+      rb.path('id', params.id, {});
       rb.body(params.body, 'application/*+json');
     }
 
@@ -364,18 +366,19 @@ export class SourceService extends BaseService {
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `apiSourceCreateSourcePost$Response()` instead.
+   * To access the full response (for headers, for example), `apiSourceIdCreateSourcePost$Response()` instead.
    *
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
-  apiSourceCreateSourcePost(params?: {
+  apiSourceIdCreateSourcePost(params: {
+    id: string;
     body?: CreateSourceModel
   },
   context?: HttpContext
 
 ): Observable<void> {
 
-    return this.apiSourceCreateSourcePost$Response(params,context).pipe(
+    return this.apiSourceIdCreateSourcePost$Response(params,context).pipe(
       map((r: StrictHttpResponse<void>) => r.body as void)
     );
   }
