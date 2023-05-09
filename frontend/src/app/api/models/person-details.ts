@@ -7,6 +7,8 @@ export interface PersonDetails {
   deathDate?: null | string;
   description?: null | string;
   firstName?: null | string;
+  genderMan?: boolean;
+  genderWomen?: boolean;
   id?: null | string;
   lastName?: null | string;
   nationality?: null | string;

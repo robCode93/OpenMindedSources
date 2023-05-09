@@ -5,6 +5,8 @@ export interface CreatePersonModel {
   deathDate?: null | string;
   description?: null | string;
   firstName?: null | string;
+  genderMan?: boolean;
+  genderWomen?: boolean;
   lastName?: null | string;
   nationality?: null | string;
   sourceIds?: null | Array<string>;

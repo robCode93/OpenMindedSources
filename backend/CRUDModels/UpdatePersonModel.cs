@@ -12,5 +12,7 @@
         public string? Description { get; set; }
         public Guid? ThumbnailId { get; set; }
         public List<Guid>? SourceIds { get; set; }
+        public bool GenderMan { get; set; }
+        public bool GenderWomen { get; set; }
     }
 }

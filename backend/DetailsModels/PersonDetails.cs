@@ -16,5 +16,7 @@ namespace backend.DetailsModels
         public IList<SourceDetails>? Sources { get; set; }
         public FileReferenceDetails? Thumbnail { get; set; }
         public Guid? ThumbnailId { get; set; }
+        public bool GenderMan { get; set; }
+        public bool GenderWomen { get; set; }
     }
 }

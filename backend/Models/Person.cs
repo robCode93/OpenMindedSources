@@ -10,6 +10,8 @@ namespace backend.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
 
+        public bool GenderMan { get; set; }
+        public bool GenderWomen { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime? DeathDate { get; set; }
         public string? Nationality { get; set; }

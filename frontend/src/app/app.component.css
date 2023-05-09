@@ -1,3 +1,8 @@
-#menuRow{
-    padding-bottom: 0;
+/* ########## BASIC ########## */
+.nav-item, .navbar-brand{
+    cursor: pointer;
+}
+
+#routerDisplay{
+    padding: 1rem;
 }

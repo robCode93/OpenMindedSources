@@ -53,6 +53,8 @@ namespace backend.Migrations
                     ThumbnailId = table.Column<Guid>(type: "uuid", nullable: true),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
+                    GenderMan = table.Column<bool>(type: "boolean", nullable: false),
+                    GenderWomen = table.Column<bool>(type: "boolean", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeathDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Nationality = table.Column<string>(type: "text", nullable: true),

@@ -70,6 +70,16 @@ namespace backend.Services
             person.FirstName = createModel.FirstName;
             person.LastName = createModel.LastName;
             person.Title = createModel.Title;
+            
+            if(createModel.GenderMan is true)
+            {
+                person.GenderMan = true;
+                person.GenderWomen = false;
+            }else if (createModel.GenderWomen is true)
+            {
+                person.GenderMan = false;
+                person.GenderWomen = true;
+            }
 
             if(createModel.ThumbnailId is not null)
             {
@@ -185,7 +195,18 @@ namespace backend.Services
             person.Thumbnail = _context.FileReferences.FirstOrDefault(f => f.Id == updateModel.ThumbnailId);
             person.ThumbnailId = updateModel.ThumbnailId;
 
-            if(updateModel.SourceIds is not null)
+            if (updateModel.GenderMan is true)
+            {
+                person.GenderMan = true;
+                person.GenderWomen = false;
+            }
+            else if (updateModel.GenderWomen is true)
+            {
+                person.GenderMan = false;
+                person.GenderWomen = true;
+            }
+
+            if (updateModel.SourceIds is not null)
             {
                 foreach(var sourceId in updateModel.SourceIds)
                 {

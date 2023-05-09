@@ -78,6 +78,12 @@ namespace backend.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("GenderMan")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("GenderWomen")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");

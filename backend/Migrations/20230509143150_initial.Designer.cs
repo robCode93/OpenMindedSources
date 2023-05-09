@@ -12,7 +12,7 @@ using backend.Models;
 namespace backend.Migrations
 {
     [DbContext(typeof(OpenMindServerContext))]
-    [Migration("20230509130335_initial")]
+    [Migration("20230509143150_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -80,6 +80,12 @@ namespace backend.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("GenderMan")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("GenderWomen")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
                         .IsRequired()

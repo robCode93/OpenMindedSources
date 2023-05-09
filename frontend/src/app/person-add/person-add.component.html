@@ -1,94 +1,39 @@
-<div *ngIf="errorExists" class="ui negative message" id="error">
-    <i class="close icon" (click)="errorExists = !errorExists"></i>
-    <div class="header">
-      {{errorHeader}}
-    </div>
-    <p>{{errorMessage}}</p>
-</div>
-<div class="row">
-    <div class="ui breadcrumb">
-        <a class="section">Open-Mind-Database</a>
-        <i class="right angle icon divider"></i>
-        <a class="section">Personen</a>
-        <i class="right angle icon divider"></i>
-        <div class="active section">Hinzufügen</div>
-    </div>
-</div>
-<div class="row" class="siteHeader">
-    <div class="ui horizontal statistic">
-        <div class="value">
-            Person
-        </div>
-        <div class="label">
-            Füge eine neue Person / Institution für Quellen hinzu
+<div class="container shadow p-3 mb-5 bg-body-tertiary rounded">
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Thumbnail auswählen</label>
+                <input class="form-control" type="file" id="formFile">
+              </div>
         </div>
     </div>
-</div>
-<div class="row contentArea">
-    <div class="thumbnailArea">
-        <div class="imageContainer">
-            <img [src]="thumbnailPreviewUrl">
-        </div>
-        <div class="dataSet">
-            <input type="file" class="fileInput" (change)="selectFile($event)">
-            <div class="ui orange icon button" (click)="uploadThumbnail()">
-                <i class="upload icon"></i>
-                Thumbnail hochladen
+    <div class="row">
+        <div class="col">
+            <div class="mb-3">
+                <label for="titleInput" class="form-label">Titel</label>
+                <input type="text" class="form-control" id="titleInput" placeholder="Dr. / Prof. / ...">
+            </div>
+            <div class="mb-3">
+                <label for="firstNameInput" class="form-label">Vorname</label>
+                <input type="text" class="form-control" id="firstNameInput" placeholder="Vorname eingeben...">
+            </div>
+            <div class="mb-3">
+                <label for="lastNameInput" class="form-label">Nachname</label>
+                <input type="text" class="form-control" id="LastNameInput" placeholder="Nachname eingeben...">
+            </div>
+            <div class="mb-3">
+                <label for="descriptionArea" class="form-label">Beschreibung</label>
+                <textarea class="form-control" id="descriptionArea" rows="5" maxlength="250" placeholder="Die Person hat folgende Eigenschaften..."></textarea>
             </div>
         </div>
-    </div>
-    <div class="infoArea">
-        <div class="innerCard">
-            <div class="innerCardInfo">
-                <div class="leftForm">
-                    <div class="dataSet">
-                        <label for="title">Titel</label>
-                        <input type="text" name="title" placeholder="Titel..." [(ngModel)]="title">
-                    </div>
-                    <div class="dataSet">
-                        <label for="firstName">Vorname(n)</label>
-                        <input type="text" name="firstName" placeholder="Max" [(ngModel)]="firstName">
-                    </div>
-                    <div class="dataSet">
-                        <label for="lastName">Nachname</label>
-                        <input type="text" name="lastName" placeholder="Mustermann" [(ngModel)]="lastName">
-                    </div>
-                    <div class="dataSet">
-                        <label for="description">Beschreibung hinzufügen (max 250 Worte)</label>
-                        <textarea name="description" [(ngModel)]="description"></textarea>
-                    </div>
-                </div>
-                <div class="rightForm">
-                    <div class="dataSet">
-                        <label for="nationality">Nationalität</label>
-                        <input type="text" name="nationality" list="countryList" placeholder="Musterland" [(ngModel)]="nationality">
-                        <datalist id="countryList">
-                            <option [value]="country.name" *ngFor="let country of _countries">{{country.name}}</option>
-                        </datalist>
-                    </div>
-                    <div class="dataSet">
-                        <label for="birthDate">Geburtsdatum</label>
-                        <input type="date" name="birthDate" [(ngModel)]="birthDate">
-                    </div>
-                    <div class="checkSet">
-                        <label for="isDeath">Verstorben</label>
-                        <input class="ui checkbox" type="checkbox" name="isDeath" (change)="isDeath = !isDeath">
-                    </div>
-                    <div class="dataSet">
-                        <label for="deathDate" [ngClass]="{'disabled' : !isDeath}">Todesdatum</label>
-                        <input type="date" name="deathDate" [disabled]="!isDeath" [ngClass]="{'disabled' : !isDeath}" [(ngModel)]="deathDate">
-                    </div>
-                </div>
-            </div>
-            <div class="innerCardActions">
-                <div class="ui icon button" (click)="createPerson()">
-                    <i class="plus icon"></i>
-                    Datensatz anlegen
-                </div>
-                <div class="ui red icon button" (click)="discardChanges()">
-                    <i class="ui eraser icon"></i>
-                    Änderungen verwerfen
-                </div>
+        <div class="col">
+            <div class="mb-3">
+                <label for="nationalityInput" class="form-label">Nationalität</label>
+                <input type="text" class="form-control" id="nationalityInput" placeholder="Herkunftsland..." list="nationalitiesList">
+                <datalist id="nationalitiesList">
+                    <option [value]="nationality" *ngFor="let nationality of _nationalitiesInDatabase">{{nationality}}</option>
+                </datalist>
             </div>
         </div>
     </div>
