@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<OpenMindServerContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("OpenMindConnection")));
+builder.Services.AddDbContext<OpenMindServerContext>(x => x.UseNpgsql(builder.Configuration.GetConnectionString("OpenMindConnection")));
 
 builder.Services.AddScoped<IFileReferenceService, FileReferenceService>();
 builder.Services.AddScoped<IPersonService, PersonService>();

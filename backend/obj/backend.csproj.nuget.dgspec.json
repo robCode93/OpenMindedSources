@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\programming\\OpenMindedSources\\backend\\backend.csproj": {}
+    "C:\\Users\\rober\\Documents\\004_Programm-Daten\\GitHub\\openmind\\OpenMindedSources\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\programming\\OpenMindedSources\\backend\\backend.csproj": {
+    "C:\\Users\\rober\\Documents\\004_Programm-Daten\\GitHub\\openmind\\OpenMindedSources\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\programming\\OpenMindedSources\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\rober\\Documents\\004_Programm-Daten\\GitHub\\openmind\\OpenMindedSources\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\programming\\OpenMindedSources\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\programming\\OpenMindedSources\\backend\\obj\\",
+        "projectPath": "C:\\Users\\rober\\Documents\\004_Programm-Daten\\GitHub\\openmind\\OpenMindedSources\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\rober\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rober\\Documents\\004_Programm-Daten\\GitHub\\openmind\\OpenMindedSources\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rober\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -78,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

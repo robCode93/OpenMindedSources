@@ -15,15 +15,15 @@ namespace backend.Migrations
                 name: "FileReferences",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DownloadUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MimeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    DownloadUrl = table.Column<string>(type: "text", nullable: true),
+                    FileName = table.Column<string>(type: "text", nullable: false),
+                    MimeType = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
                     FileSizeInBytes = table.Column<long>(type: "bigint", nullable: true),
-                    OnSource = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    OnPerson = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    OnSource = table.Column<Guid>(type: "uuid", nullable: true),
+                    OnPerson = table.Column<Guid>(type: "uuid", nullable: true),
+                    CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -34,11 +34,11 @@ namespace backend.Migrations
                 name: "SourceCategories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IconName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HexColor = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    IconName = table.Column<string>(type: "text", nullable: true),
+                    HexColor = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,15 +49,15 @@ namespace backend.Migrations
                 name: "Persons",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ThumbnailId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeathDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Nationality = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    ThumbnailId = table.Column<Guid>(type: "uuid", nullable: true),
+                    FirstName = table.Column<string>(type: "text", nullable: false),
+                    LastName = table.Column<string>(type: "text", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DeathDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Nationality = table.Column<string>(type: "text", nullable: true),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,10 +73,10 @@ namespace backend.Migrations
                 name: "SubCategories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SourceCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SourceCategoryId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -93,16 +93,16 @@ namespace backend.Migrations
                 name: "Sources",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    SourceCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    SubCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ThumbnailId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    FileReferenceId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateOfDatabaseEntry = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SourceCategoryId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SubCategoryId = table.Column<Guid>(type: "uuid", nullable: true),
+                    ThumbnailId = table.Column<Guid>(type: "uuid", nullable: true),
+                    FileReferenceId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    DateOfCreation = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DateOfDatabaseEntry = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
